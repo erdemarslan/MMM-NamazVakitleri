@@ -1,0 +1,81 @@
+/*
+//-------------------------------------------
+MMM-NamazVakitleri - CSS
+version: 0.1.0
+Copyright (C) 2020 - Erdem Arslan
+MIT License
+//-------------------------------------------
+Copy and paste any or all of these css entries into your custom.css file inside your
+css folder. The functions are annotated to make things as easy as possible for you.
+Use any colors you want! Go to - "http://htmlcolorcodes.com/color-picker/"
+Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
+*/
+
+.MMM-NamazVakitleri .header{
+  color: white;               /* Header color. Default is white. */
+  text-align: center;           /* Align header text. (left, center, right) */
+}
+
+.MMM-NamazVakitleri td {
+  height: 30px;
+  vertical-align: center;
+  padding-left: : 5px;
+  padding-right: 5px;
+  border-bottom: 1px solid #36393D;
+}
+
+.MMM-NamazVakitleri .hicri-text {
+  text-align: center;
+}
+
+.MMM-NamazVakitleri .imsak-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .imsak-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .gunes-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .gunes-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .ogle-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .ogle-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .ikindi-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .ikindi-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .aksam-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .aksam-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .yatsi-text {
+  text-align: left;
+}
+
+.MMM-NamazVakitleri .yatsi-time {
+  text-align: right;
+}
+
+.MMM-NamazVakitleri .vakit {
+  background-color: #36393D;
+}
