@@ -12,8 +12,7 @@ Module.register('MMM-NamazVakitleri', {
 	defaults: {
 		locationId: 9351, // 9351 - Çan ; 9349 - Biga
 		updateInterval: 60 * 60 * 1000, // 1 Hour - 1 Saat
-		header: 'Çan için Namaz Vakitleri',
-		apikey: 'ERANV_0000_0001_XXX', // API Anahtarı
+		header: 'ÇANAKKALE-ÇAN İÇİN NAMAZ VAKİTLERİ',
 		maxWidth: "300px",			// Max width wrapper
 	},
 	
@@ -38,10 +37,9 @@ Module.register('MMM-NamazVakitleri', {
 	start: function() {
 		Log.info("Starting module: " + this.name);
 
-		this.url = "http://api.erdemarslan.com/nv/get.php?locationId=" + this.config.locationId + "&apikey=" + this.config.apikey;
-		Log.log(this.url);
+		this.location = this.config.locationId;
+		Log.log(this.location);
 		this.NV = [];
-		//this.updateDom();
 		this.calistir();
 	},
 
@@ -182,7 +180,7 @@ Module.register('MMM-NamazVakitleri', {
 	},
 
 	namazVakitleriniAl: function() {
-		this.sendSocketNotification('NAMAZ_VAKTI_AL', this.url);
+		this.sendSocketNotification('NAMAZ_VAKTI_AL', this.location);
 	},
 
 	socketNotificationReceived: function (notification, payload) {

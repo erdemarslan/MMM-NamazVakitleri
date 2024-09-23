@@ -1,19 +1,46 @@
 /*
 //-------------------------------------------
 MMM-NamazVakitleri
-Copyright (C) 2020 - Erdem Arslan
+Copyright (C) 2024 - Erdem Arslan
 MIT License
 //-------------------------------------------
 */
 const NodeHelper = require('node_helper');
-const request = require('request');
+const { spawn } = require('child_process');
 
 module.exports = NodeHelper.create({
 	start: function() {
 		console.log("Starting node_helper for: " + this.name);
 	},
 
-	sunucudanVeriCek: function(url) {
+	sunucudanVeriCek: function(location) {
+	
+    console.log("LocationID: " + location);
+    var dataToSend = [];
+    
+    const python = spawn('sudo python', ['/home/erdemarslan/MagicMirror/modules/MMM-NamazVakitleri/source/main.py', location]);
+    
+    python.stdout.on('data', (data) => {
+      console.log('Python scripti üzerinden veri alındı...');
+      console.log(data);
+      dataToSend = data.toString();
+      console.log(dataToSend);
+    });
+    
+    python.stderr.on('err', (err) => {
+      console.log(err)
+    });
+    
+    python.on('close', (code) => {
+      console.log("child process close all stdio with code: " + code);
+      var sonuc = JSON.parse(dataToSend);
+      console.log("Sonuç: " + sonuc)
+      if (sonuc['durum'] == 'basarili') {
+        console.log(dataToSend);
+        this.sendSocketNotification("NAMAZ_VAKTI_SONUC", sonuc["veri"]);
+      }
+    });
+    /*
 		request({
 			url: url,
 			method: 'GET'}, (error, response, body) => {
@@ -29,6 +56,7 @@ module.exports = NodeHelper.create({
 				}
 			}
 		);
+		*/
 	},
 
 	socketNotificationReceived: function(notification, payload) {
