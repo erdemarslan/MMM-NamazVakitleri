@@ -86,7 +86,7 @@ class namazvakti():
 
     # ülke isimlerini bir dict (sözlük) olarak döner! Sıralı dönmesini bekleme!
     def ulkeler(self):
-        sonuc = { "durum" : "hata", "veri" : {}}
+        sonuc = {"durum" : "hata", "veri" : {}}
         ulkeListesi = {}
 
         for ulke in self.__veritabani:
@@ -140,7 +140,7 @@ class namazvakti():
 
     # ilçeler listesini verir! Eğer ilçe listesi yoksa hata döndürür!
     def ilceler(self, ulke_id, sehir_id):
-        sonuc = { "durum" : "hata", "veri" : {}}
+        sonuc = {"durum" : "hata", "veri" : {}}
 
         # ülke id geçerliyse!
         if str(ulke_id) in self.__veritabani:
@@ -269,7 +269,7 @@ class namazvakti():
     def __sunucudanVeriCek(self, yer):
 
         # geriye bunu döndürelim!
-        sonuc = { "durum" : "hata", "veri" : {}}
+        sonuc = {"durum" : "hata", "veri" : {}}
         vakitler = {}
         # tam urlyi dolduralım
         fullURL = "http://namazvakitleri.diyanet.gov.tr" + yer["url"]
@@ -309,17 +309,17 @@ class namazvakti():
                         }
                         simdikiSatir = tarih
 
-                    if sira == 1:
-                        vakitler[simdikiSatir]["imsak"] = elde
                     if sira == 2:
-                        vakitler[simdikiSatir]["gunes"] = elde
+                        vakitler[simdikiSatir]["imsak"] = elde
                     if sira == 3:
-                        vakitler[simdikiSatir]["ogle"] = elde
+                        vakitler[simdikiSatir]["gunes"] = elde
                     if sira == 4:
-                        vakitler[simdikiSatir]["ikindi"] = elde
+                        vakitler[simdikiSatir]["ogle"] = elde
                     if sira == 5:
-                        vakitler[simdikiSatir]["aksam"] = elde
+                        vakitler[simdikiSatir]["ikindi"] = elde
                     if sira == 6:
+                        vakitler[simdikiSatir]["aksam"] = elde
+                    if sira == 7:
                         vakitler[simdikiSatir]["yatsi"] = elde
                     sira += 1 # td for döngüsünün sonu
                 sira = 0 # tr for döngüsünün sonu

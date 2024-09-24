@@ -2,9 +2,10 @@
 from namazvakti import namazvakti
 import sys
 import os
+import json
 
 def main():
-    klasor = os.path.join(os.getcwd(), 'MagicMirror', 'modules', 'MMM-NamazVakitleri', 'source')
+    klasor = os.path.join(os.getcwd(), 'modules', 'MMM-NamazVakitleri', 'source')
     #print(klasor)
     namaz = namazvakti(mainKlasor= klasor)
 
@@ -16,9 +17,10 @@ def main():
         location = args[1]
     
     try:
-        print(namaz.vakit(location))
+        print(json.dumps(namaz.vakit(location)))
     except Exception as e:
-        print("{'durum': 'hata', 'veri': {}, 'msg': 'İstenilen şehre ait veri bulunamadı.'}")
+        sonuc = {'durum': 'hata', 'veri': {}, 'msg': 'İstenilen şehre ait veri bulunamadı.'}
+        print(json.dumps(sonuc))
     
 if __name__ == '__main__':
     main()

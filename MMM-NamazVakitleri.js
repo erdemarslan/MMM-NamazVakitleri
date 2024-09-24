@@ -1,8 +1,8 @@
 /*
 //-------------------------------------------
 MMM-NamazVakitleri
-version: 0.1.0
-Copyright (C) 2020 - Erdem Arslan
+version: 0.2.0
+Copyright (C) 2024 - Erdem Arslan
 MIT License
 //-------------------------------------------
 */

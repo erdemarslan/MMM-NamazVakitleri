@@ -6,7 +6,7 @@ MIT License
 //-------------------------------------------
 */
 const NodeHelper = require('node_helper');
-const { spawn } = require('child_process');
+const {PythonShell} = require('python-shell')
 
 module.exports = NodeHelper.create({
 	start: function() {
@@ -15,48 +15,31 @@ module.exports = NodeHelper.create({
 
 	sunucudanVeriCek: function(location) {
 	
-    console.log("LocationID: " + location);
-    var dataToSend = [];
+    const self = this;
+	
+    //console.log("LocationID: " + location);
     
-    const python = spawn('sudo python', ['/home/erdemarslan/MagicMirror/modules/MMM-NamazVakitleri/source/main.py', location]);
+    let script = 'modules/' + this.name + '/source/main.py'
     
-    python.stdout.on('data', (data) => {
-      console.log('Python scripti üzerinden veri alındı...');
-      console.log(data);
-      dataToSend = data.toString();
-      console.log(dataToSend);
-    });
+    //console.log(script);
     
-    python.stderr.on('err', (err) => {
-      console.log(err)
-    });
+    const python = new PythonShell(script, {mode: 'text', args: [location]})
     
-    python.on('close', (code) => {
-      console.log("child process close all stdio with code: " + code);
-      var sonuc = JSON.parse(dataToSend);
-      console.log("Sonuç: " + sonuc)
+    python.on('message', function(message) {
+      //console.log(message);
+      var sonuc = JSON.parse(message.toString());
       if (sonuc['durum'] == 'basarili') {
-        console.log(dataToSend);
-        this.sendSocketNotification("NAMAZ_VAKTI_SONUC", sonuc["veri"]);
+        console.log("[" + self.name + "] " + 'veri başarıyla alındı ve işlendi...');
+        self.sendSocketNotification("NAMAZ_VAKTI_SONUC", sonuc["veri"]);
       }
     });
-    /*
-		request({
-			url: url,
-			method: 'GET'}, (error, response, body) => {
-				if(!error && response.statusCode == 200) {
-					// gelen veriler...
-					//console.log(response);
-					//console.log(body);
-					var sonuc = JSON.parse(body);
-					if(sonuc["durum"] == "basarili") {
-						console.log(sonuc["mesaj"]);
-						this.sendSocketNotification("NAMAZ_VAKTI_SONUC", sonuc["veri"]);
-					}
-				}
-			}
-		);
-		*/
+    
+    python.end(function (err,code,signal) {
+      if (err) throw err;
+      console.log('The exit code was: ' + code);
+      console.log('The exit signal was: ' + signal);
+      console.log("[" + self.name + "] " + 'finished running...');
+    });
 	},
 
 	socketNotificationReceived: function(notification, payload) {
