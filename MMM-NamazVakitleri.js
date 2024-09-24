@@ -119,21 +119,21 @@ Module.register('MMM-NamazVakitleri', {
 	hangiVakitteyiz: function() {
 		let vakitler = this.NV;
 
-		let	imsak_val	= vakitler["vakit"]["imsak"].split(":"),
-			gunes_val	= vakitler["vakit"]["gunes"].split(":"),
-			ogle_val	= vakitler["vakit"]["ogle"].split(":"),
-			ikindi_val	= vakitler["vakit"]["ikindi"].split(":"),
-			aksam_val	= vakitler["vakit"]["aksam"].split(":"),
-			yatsi_val	= vakitler["vakit"]["yatsi"].split(":");
+		let	imsak_val	= vakitler["vakit"]["imsak"].split(":");
+		let gunes_val	= vakitler["vakit"]["gunes"].split(":");
+		let ogle_val	= vakitler["vakit"]["ogle"].split(":");
+		let ikindi_val	= vakitler["vakit"]["ikindi"].split(":");
+		let aksam_val	= vakitler["vakit"]["aksam"].split(":");
+		let yatsi_val	= vakitler["vakit"]["yatsi"].split(":");
 
 		let simdi = new Date(), simdiInt = simdi.valueOf();
 
-		let	imsak	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),imsak_val[0],imsak_val[1],0,0).valueOf(),
-			gunes	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),gunes_val[0],gunes_val[1],0,0).valueOf(),
-			ogle	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),ogle_val[0],ogle_val[1],0,0).valueOf(),
-			ikindi	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),ikindi_val[0],ikindi_val[1],0,0).valueOf(),
-			aksam	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),aksam_val[0],aksam_val[1],0,0).valueOf(),
-			yatsi	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),yatsi_val[0],yatsi_val[1],0,0).valueOf();
+		let	imsak	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),imsak_val[0],imsak_val[1],0,0).valueOf();
+		let gunes	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),gunes_val[0],gunes_val[1],0,0).valueOf();
+		let ogle	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),ogle_val[0],ogle_val[1],0,0).valueOf();
+		let ikindi	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),ikindi_val[0],ikindi_val[1],0,0).valueOf();
+		let aksam	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),aksam_val[0],aksam_val[1],0,0).valueOf();
+		let yatsi	= new Date(simdi.getFullYear(),simdi.getMonth(),simdi.getDate(),yatsi_val[0],yatsi_val[1],0,0).valueOf();
 
 		let simdikiVakit = '';
 
@@ -159,7 +159,7 @@ Module.register('MMM-NamazVakitleri', {
 		}
 		else
 		{
-			simdikiVakit = yatsi;
+			simdikiVakit = "yatsi";
 		}
 
 		return simdikiVakit;
